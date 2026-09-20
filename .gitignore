@@ -1,0 +1,26 @@
+.DS_Store
+Thumbs.db
+
+# Editor and IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Local previews and generated archives
+*.zip
+*.tar
+*.tgz
+dist/
+build/
+coverage/
+
+# Local logs and temporary files
+*.log
+*.tmp
+.cache/
+
+# Secrets and local configuration
+.env
+.env.*
+!.env.example

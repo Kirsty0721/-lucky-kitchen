@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+    <meta name="theme-color" content="#f4ead2">
+    <title>好运厨房：从零开张</title>
+    <link rel="stylesheet" href="./management.css">
+  </head>
+  <body>
+    <section class="cover screen is-active" id="coverScreen">
+      <button class="music-button cover-music" type="button" data-music-toggle aria-label="关闭配乐">♪</button>
+      <div class="cover-mark"><img src="assets/chef-cover.png" alt="好运厨房原创厨师"><strong>好运厨房</strong></div>
+      <button class="primary-button" id="enterKitchen" type="button">开始营业</button>
+    </section>
+
+    <main class="hub screen" id="hubScreen">
+      <header class="hub-header"><div><h1>好运厨房</h1></div><div class="header-actions"><div class="balances"><div class="wallet">💰 <strong id="hubCash">$0</strong></div><div class="chef-balance"><img src="assets/coins/generated/chef-coin.png" alt="厨神币"><strong id="hubChefCoins">0</strong></div></div><div class="hub-tools"><button class="rules-button" id="openRules" type="button" aria-label="查看游戏规则">?</button><button class="music-button" type="button" data-music-toggle aria-label="关闭配乐">♪</button></div></div></header>
+      <section class="shopfront" id="shopfront">
+        <img id="storeImage" src="assets/chef.png" alt="好运厨房门店招牌">
+        <div><small>门店等级 <b id="storeLevel">1</b></small><h2 id="storeTitle">一张桌，也要认真开张</h2><p id="storeEffect">订单收入 +0%</p></div>
+        <button id="openShop" type="button">装修与采购</button>
+      </section>
+      <section class="chapter-map">
+        <div class="section-heading"><span>经营路线</span><small>已通关卡可重复玩，通关记录永久保存</small></div>
+        <article class="chapter-card current" data-chapter="0"><div class="chapter-number">01</div><div class="chapter-copy"><h2>白手起家</h2><p>先把第一批熟客照顾好。</p></div><div class="level-path"></div></article>
+        <article class="chapter-card" data-chapter="1"><div class="chapter-number">02</div><div class="chapter-copy"><h2>有点小钱</h2><p>桌椅齐了，客人也多了。</p></div><div class="level-path"></div></article>
+        <article class="chapter-card" data-chapter="2"><div class="chapter-number">03</div><div class="chapter-copy"><h2>财源滚滚</h2><p>两条传送带都要冒烟了。</p></div><div class="level-path"></div></article>
+        <article class="chapter-card" data-chapter="3"><div class="chapter-number">04</div><div class="chapter-copy"><h2>富得流油</h2><p>把小店开成好运地标。</p></div><div class="level-path"></div></article>
+      </section>
+      <section class="rush-entry" id="rushEntry">
+        <div class="rush-entry-mark">⚡</div>
+        <div><h2>好运急单</h2><p id="rushEntryCopy">有点小钱后，就可以来接急单啦！</p></div>
+        <button id="startRush" type="button" disabled><span>去赚外快</span><b id="rushTickets"></b></button>
+      </section>
+    </main>
+
+    <main class="rush screen" id="rushScreen">
+      <header class="rush-header"><div><small>好运厨房 · 分级挑战</small><h1>好运急单</h1></div><button class="back-button" id="leaveRush" type="button" aria-label="退出急单">←</button><div class="rush-time"><small>本单剩余</small><strong id="rushTime">18</strong></div></header>
+      <section class="rush-status"><div>💰 <b id="rushRunCash">$0</b></div><div class="rush-lives" id="rushLives" aria-label="三条命">♥ ♥ ♥</div><div><img src="assets/coins/generated/chef-coin.png" alt="厨神币"><b id="rushRunCoins">0</b></div></section>
+      <section class="rush-order"><div><small id="rushOrderNumber">急单 01</small><h2 id="rushOrderName">好运小拼盘</h2></div><div class="rush-order-steps" id="rushOrderSteps"></div></section>
+      <section class="rush-belt"><div class="rush-belt-top"><span>食材从这里来 →</span><b id="rushSpeed">1.0×</b></div><div class="rush-track" id="rushTrack"><div class="rush-pickup-zone"><span>点击取走</span></div></div></section>
+      <p class="rush-hint">等硬币进入右侧取走区，按订单顺序点击</p>
+    </main>
+
+    <main class="kitchen screen" id="gameScreen">
+      <header class="game-header">
+        <div class="level-summary"><small id="levelLabel">白手起家 · 第 1 关</small><strong id="customerProgress">顾客 1 / 3</strong></div>
+        <button class="back-button" id="leaveLevel" aria-label="返回经营地图">←</button>
+        <div class="header-actions"><div class="balances"><div class="wallet">💰 <strong id="gameCash">$0</strong></div><div class="chef-balance"><img src="assets/coins/generated/chef-coin.png" alt="厨神币"><strong id="gameChefCoins">0</strong></div></div><button class="music-button" type="button" data-music-toggle aria-label="关闭配乐">♪</button></div>
+      </header>
+      <section class="customer-queue" id="customerQueue" aria-label="等待中的顾客"></section>
+      <section class="kitchen-board">
+        <aside class="conveyor food-conveyor"><div class="conveyor-title">食材</div><div class="vertical-track" id="foodTrack"></div></aside>
+        <section class="service-station">
+          <div class="station-guide"><button class="power-slot" id="powerSlot0" type="button" disabled></button><strong>操作台</strong><button class="power-slot" id="powerSlot1" type="button" disabled></button></div>
+          <div class="tabletop" id="tabletop"></div>
+          <span class="sr-only" id="selectionHint">先取一只餐盘</span>
+          <div class="bottom-tools" aria-label="餐盘操作区">
+            <button class="bottom-tool trash-tool" id="trashPlate" type="button" disabled><span class="trash-can"><b>垃圾桶</b></span></button>
+            <button class="bottom-tool take-plate-tool" id="takePlate" type="button"><span class="take-plate-disc">点击取盘</span></button>
+          </div>
+        </section>
+        <aside class="conveyor drink-conveyor"><div class="conveyor-title">饮料</div><div class="vertical-track" id="drinkTrack"></div></aside>
+      </section>
+    </main>
+
+    <div class="overlay" id="shopModal" aria-hidden="true"><section class="sheet" role="dialog" aria-modal="true"><div class="sheet-heading"><div><small>把赚来的钱花在刀刃上</small><h2>装修与采购</h2></div><div class="sheet-balances"><div class="sheet-wallet">💰 <b id="shopCash">$0</b></div><div class="chef-balance"><img src="assets/coins/generated/chef-coin.png" alt="厨神币"><b id="shopChefCoins">0</b></div></div><button data-close="shopModal" aria-label="关闭">×</button></div><div class="shop-section"><h3>一次性道具 <small>可重复购买，每关最多携带2种</small></h3><div class="shop-grid" id="powerupShop"></div></div><div class="shop-section"><h3>厨神币兑换 <small>可重复兑换</small></h3><div class="exchange-grid" id="exchangeShop"></div></div><div class="shop-section"><h3>装修门店 <small>永久提高订单收入</small></h3><div class="shop-grid" id="renovationShop"></div></div><div class="shop-section"><h3>购买餐盘 <small>一次买断，解锁复杂订单</small></h3><div class="shop-grid" id="plateShop"></div></div><div class="shop-section"><h3>采购高级食材 <small>买断后加入订单池</small></h3><div class="shop-grid" id="ingredientShop"></div></div></section></div>
+    <div class="overlay" id="loadoutModal" aria-hidden="true"><section class="sheet compact-sheet" role="dialog" aria-modal="true"><div class="sheet-heading"><div><small>本关各使用一次</small><h2>选择最多2种道具</h2></div><button data-close="loadoutModal" aria-label="关闭">×</button></div><div class="loadout-grid" id="loadoutGrid"></div><button class="primary-button loadout-start" id="confirmLoadout" type="button">开始接单</button></section></div>
+    <div class="overlay" id="rulesModal" aria-hidden="true"><section class="sheet rules-sheet" role="dialog" aria-modal="true" aria-labelledby="rulesTitle"><div class="sheet-heading"><div><small>随时可以回来查看</small><h2 id="rulesTitle">游戏规则</h2></div><button data-close="rulesModal" aria-label="关闭规则">×</button></div><div class="rule-list"><section><b>01 · 取盘与装盘</b><p>点击“取盘”拿餐盘。点击盘子可切换当前餐盘；食材或饮料进入“点击取料”区域时，点击即可装盘。</p></section><section><b>02 · 核对并上菜</b><p>按照顾客卡片里的图标配餐，拖动餐盘到对应顾客。顾客倒计时结束后会离开。</p></section><section><b>03 · 做错怎么办</b><p>拿错食材可把整盘拖进垃圾桶重做，每份材料扣 $10。错餐也能上桌，但本单只能收到 20% 的钱。</p></section><section><b>04 · 厨神币</b><p>在取料区点到厨神币可获得 1 枚，并给最着急的顾客加 3 秒；10 枚厨神币可兑换 $100。</p></section><section><b>05 · 星级奖励</b><p>全部顾客招待成功得三星，少 1 位得二星，少 2 位得一星。首次三星通关：每单元前四关奖励 10 枚厨神币，第五关奖励 20 枚。</p></section><section><b>06 · 经营升级</b><p>零钱可购买一次性道具、装修门店、餐盘和高级食材。装修与餐盘会永久提高订单收入；每关最多携带 2 种道具，各使用一次。</p></section><section><b>07 · 好运急单</b><p>通关主线第 1 关、进入第 2 关后即可解锁。按所选难度连续完成订单，每单需依次取走 4–6 枚食材币；点错或超时会失去一颗心，接到厨神币可为本单加 1 秒。每局只有一次复活机会，可花 10、20 或 30 枚厨神币恢复对应数量的生命。挑战成功会获得奖金并计算已有订单收入加成；失败不结算零钱，但本局取得的厨神币会保留。</p></section></div></section></div>
+    <div class="overlay" id="resultModal" aria-hidden="true"><section class="result-card" role="dialog" aria-modal="true"><img id="resultChef" src="assets/chef.png" alt="好运厨房厨师"><h2 id="resultTitle">第一天，顺利收摊！</h2><div class="result-stars" id="resultStars" aria-label="本关星级"><i class="earned">⭐</i><i class="earned">⭐</i><i class="earned">⭐</i></div><p class="perfect-reward" id="perfectReward" hidden></p><p id="resultCopy">熟客记住了你的手艺。</p><div class="result-money"><span>本关赚到</span><strong id="levelEarnings">$0</strong><small>厨神币累计 <b id="resultChefCoins">0</b> 枚</small></div><div class="result-actions"><button class="primary-button" id="resultNext" type="button" hidden>下一关</button><button class="secondary-button" id="resultAction" type="button">回经营地图</button><button class="secondary-button" id="resultHome" type="button" hidden>回到首页</button></div></section></div>
+    <div class="overlay" id="rushDifficultyModal" aria-hidden="true"><section class="sheet compact-sheet rush-difficulty-sheet" role="dialog" aria-modal="true"><div class="sheet-heading"><div><h2>今天接哪种急单？</h2></div><button data-close="rushDifficultyModal" aria-label="关闭">×</button></div><div class="rush-difficulty-grid"><button type="button" data-rush-difficulty="easy"><span>顺手急单</span><b>难度 ★☆☆</b><strong>奖金 $600</strong></button><button class="recommended" type="button" data-rush-difficulty="normal"><em>推荐</em><span>特快急单</span><b>难度 ★★☆</b><strong>奖金 $1000</strong></button><button type="button" data-rush-difficulty="hard"><span>火烧眉毛单</span><b>难度 ★★★</b><strong>奖金 $1800</strong></button></div><p class="difficulty-note">奖金还会计算已有的订单收入加成</p></section></div>
+    <div class="overlay" id="rushResultModal" aria-hidden="true"><section class="result-card rush-result-card" role="dialog" aria-modal="true"><div class="rush-result-stamp">急单收工</div><img src="assets/chef.png" alt="好运厨房厨师"><h2 id="rushResultTitle">手速不错，外快到手！</h2><p id="rushResultCopy">完成 0 单</p><div class="rush-result-rewards"><div><span>零钱</span><strong id="rushResultCash">+$0</strong></div><div><span>厨神币</span><strong id="rushResultCoins">+0</strong></div></div><div class="result-actions"><button class="primary-button" id="rushAgain" type="button">再接一班</button><button class="secondary-button" id="rushToHub" type="button">回经营地图</button></div></section></div>
+    <div class="overlay" id="rushReviveModal" aria-hidden="true"><section class="result-card rush-revive-card" role="dialog" aria-modal="true"><div class="rush-result-stamp">还有一次机会</div><img src="assets/chef-angry-user.png" alt="主厨有点着急"><h2>要不要重整旗鼓？</h2><p>选要补回的生命值。本局只有一次复活机会。</p><p class="revive-balance">现有厨神币 <b id="rushReviveBalance">0</b> 枚</p><div class="rush-revive-choices" id="rushReviveChoices"><button type="button" data-rush-revive="1"><b>♥</b><span>10 枚</span></button><button type="button" data-rush-revive="2"><b>♥♥</b><span>20 枚</span></button><button type="button" data-rush-revive="3"><b>♥♥♥</b><span>30 枚</span></button></div><button class="secondary-button rush-give-up" id="rushGiveUp" type="button">这次先收工</button></section></div>
+    <div class="tutorial-layer" id="tutorialLayer" hidden><div class="tutorial-focus" id="tutorialFocus"></div><div class="tutorial-hand" id="tutorialHand" aria-hidden="true">☝</div><aside class="tutorial-bubble" role="status"><b id="tutorialTitle">第一步</b><p id="tutorialCopy">点击下方圆盘，先拿一只餐盘。</p><button id="skipTutorial" type="button">跳过引导</button></aside></div>
+    <div class="toast" id="toast" aria-live="polite"></div>
+    <script src="./assets/audio/lucky-kitchen-theme-3.js"></script>
+    <script src="./management.js"></script>
+  </body>
+</html>
